@@ -1,6 +1,2 @@
 Features
 	implement go, move, and examine features
-
-	Find better way to check for look commands for examople
-	     want array: $looks = ["look", "l"]
-	     	  then check each string

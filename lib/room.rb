@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby -wKU
+require_relative "utils.rb"
+
+#Constants
+$Lookarry = ["l", "look"]
+$Movearry = ["go", "move"]
 
 class Room
 	attr_accessor :description
@@ -15,24 +20,33 @@ class Room
 		cd1 = command.first #first word
 		cd2 = command.at(1) #second word
 		
-		case cd1
-		when "look"
-			puts @description
-		when "l"
-			puts @description
-		when "go"
-			puts "I can't do anything yet!"
-		when "move"
-			puts "I can't do anything yet!"
-		when "examine"
-			puts "I can't do anything yet!"
+		if $Lookarry.include? cd1 
+			#user wants to look
+			if cd2 == nil 
+				puts @description
+			elsif cd2 == "at"
+				cd1 = "examine"
+			end
 		end
+		if $Movearry.include? cd1
+			#user wants to move, check if it matches available directions
+			if cd2 != nil
+				if @directions.include? cd2
+					puts "You can go that way." #temp
+				else
+					puts "You cannot go that way." #temp
+				end
+			else
+				puts "Which way did you want to go?"
+			end
+		end
+		
 	end
 end
 		
-
+#debug
 forest = "You are in a forest. You see a path to the norh."
-posdi = ["North"]
+posdi = ["north"]
 roomA = Room.new forest
 roomA.directions = posdi
 
