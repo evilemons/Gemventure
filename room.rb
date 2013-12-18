@@ -12,7 +12,7 @@ class Room
 	def putcommand(command)
 		command = command.downcase; command = command.split
 		#analyse
-		cd1 = command.at(0) #first word
+		cd1 = command.first #first word
 		cd2 = command.at(1) #second word
 		
 		case cd1
