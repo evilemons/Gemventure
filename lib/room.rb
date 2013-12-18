@@ -1,17 +1,19 @@
 #!/usr/bin/env ruby -wKU
-require_relative "utils.rb"
+require_relative "item.rb"
 
 #Constants
 $Lookarry = ["l", "look"]
 $Movearry = ["go", "move"]
+$NilResponce = "I'm sorry, could you speak up?"
 
 class Room
 	attr_accessor :description
 	attr_accessor :directions
-	
-	def initialize(description)
-		@description = description
-		puts @description;
+	attr_accessor :items
+
+	def initialize(des)
+		@description = des
+		puts @description
 	end
 
 	def putcommand(command)
@@ -19,6 +21,11 @@ class Room
 		#analyse
 		cd1 = command.first #first word
 		cd2 = command.at(1) #second word
+		cd3 = command.at(2) #third word
+
+		if cd1 == nil
+			puts $NilResponce
+		end
 		
 		if $Lookarry.include? cd1 
 			#user wants to look
@@ -26,6 +33,7 @@ class Room
 				puts @description
 			elsif cd2 == "at"
 				cd1 = "examine"
+				cd2 = cd3
 			end
 		end
 		if $Movearry.include? cd1
@@ -40,12 +48,18 @@ class Room
 				puts "Which way did you want to go?"
 			end
 		end
-		
+		if cd1 == "examine"
+			puts "You look at the #{cd2}"
+		end
 	end
 end
-		
+
+shovel = Item.new
+shovel.description = "The shovel is rusty."
+
+
 #debug
-forest = "You are in a forest. You see a path to the norh."
+forest = "You are in a forest. You see a path to the norh. There is a shovel lieing on the ground."
 posdi = ["north"]
 roomA = Room.new forest
 roomA.directions = posdi
