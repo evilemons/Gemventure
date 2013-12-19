@@ -15,6 +15,9 @@ initialRoom = Room.new forest
 initialRoom.directions = possibleDirections
 initialRoom.addItems([shovel, bar])
 
-while true
-	Interaction.new(initialRoom)
+loop do
+	inroomone = Interaction.new(initialRoom)
+	if inroomone == false
+		break
+	end
 end

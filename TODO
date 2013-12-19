@@ -1,8 +1,16 @@
-Features
+General
+	use hashes to initialize objects
+		EX: initialRoom = Room.new({desctiption: forest, items: [shovel, bar], })
+
 	item interaction
 		fix multiple items
+
 	implement go/move
 
 	inventory
 
 	colors?
+
+Parser
+	make explicit definition of possable letter directions obsolete 
+		EX: ["north", "n"]

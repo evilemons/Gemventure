@@ -1,10 +1,18 @@
 #!/usr/bin/env ruby -wKU
+#interaction.rb
+
+require_relative "parser.rb"
 
 class Interaction
-	@@currentRoom = ""
+	private
 	def initialize(room)
 		@@currentRoom = room
 		command = gets.chomp
-		@@currentRoom.putCommand command
+		cd = Parser.parse command
+		case cd
+		when "examine"
+		when "move"
+		when "condition"
+		end
 	end
 end
