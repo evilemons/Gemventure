@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby -wKU
 
 class Interaction
-	def initialize(args)
-		
-	end
-	
-	self.def examine(item)
-		
+	@@currentRoom = ""
+	def initialize(room)
+		@@currentRoom = room
+		command = gets.chomp
+		@@currentRoom.putCommand command
 	end
 end

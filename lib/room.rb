@@ -16,13 +16,26 @@ class Room
 
 	def initialize(des)
 		@description = des
+		@items = []
 		puts @description
 	end
 
 	def addItems(items)
-		items.each do |item|
-			@items.push item
+		if items.respond_to?("each")
+			items.each do |item|
+				@items.push(item)
+			end
+		else
+			@items.push(items)
 		end
+	end
+
+	def removeItem(item)
+		@items.delete_if{|x| x == item}
+	end
+
+	def newDescription(des)
+		@description = des
 	end
 
 	def putCommand(command)
@@ -68,8 +81,17 @@ class Room
 		end
 		if cd1 == "examine"
 			command.delete_if{|x| x == "the"}
-			if Lookarry.include? cd2
-				puts "You look at the #{cd2}"
+
+			items.each do |item|
+				if item.name == cd2
+					puts item.description
+				else
+					if cd2 == nil
+						puts "Examine what?"
+						break
+					end
+					puts "There is no #{cd2}"
+				end
 			end
 		end
 	end
