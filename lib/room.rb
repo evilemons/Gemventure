@@ -81,7 +81,6 @@ class Room
 		end
 		if cd1 == "examine"
 			command.delete_if{|x| x == "the"}
-
 			items.each do |item|
 				if item.name == cd2
 					puts item.description
