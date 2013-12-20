@@ -5,8 +5,9 @@ General
 
 	inventory
 
-	colors?
-
 Parser
 	make explicit definition of possable letter directions obsolete 
-		EX: ["north", "n"]
+		EX: ["north", "n"]t
+
+Colors
+	automatic coloring for keywords (items)
