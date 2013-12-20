@@ -7,8 +7,10 @@ class Item
 	attr_accessor :name
 
 	private
-	def initialize(name)
-		@name = name
+	def initialize(hsh)
+		@description = hsh[:description]
+		@actions = hsh[:actions]
+		@name = hsh[:name]
 	end
 		
 end
