@@ -2,74 +2,43 @@
 #parser.rb
 
 #Constants
-Lookarry = ["l", "look"]
-Movearry = ["go", "move"]
-NilResponce = 'Im sorry, could you speak up?'
-NoGoResponce = 'You cannot go that way.'
-NilGoResponce = 'Which way did you want to go?'
+Lookarry = %w[l look]
+Movearry = %w[go move]
 
 class Parser
 	public
-	def parse(command, currentRoom)
-		command = command.downcase
-		if command == 'quit'
+	def parse(command)
+		command.downcase!
+		if command == 'quit' then
 			exit
 		else
-			command = command.split
+			cd1, cd2, cd3 = command.split(" ")
 		end
-		#analyze
-		cd1 = command.first #first word
-		cd2 = command.at(1) #second word
-		cd3 = command.at(2) #third word
 
-		if cd1 == nil
-			puts NilResponce
+		if cd1 == nil then
+			return nil
 		end
 		
-		if Lookarry.include? cd1 
-			#user wants to look
-			if cd2 == nil 
-				puts currentRoom.description
+		if Lookarry.include? cd1 then #user wants to look
+			if cd2 == nil  then
+				return {:todo=> look}
 			elsif cd2 == 'at'
 				cd1 = 'examine'
 				cd2 = cd3
 			elsif cd2 == 'around'
-				puts currentRoom.description
+				return {:todo=> look}
 			else
 				puts "I'm sorry, I dont know what you mean by look #{cd2}"
 			end
 		end
-		if Movearry.include? cd1
-			#user wants to move, check if it matches available directions
-			if cd2 != nil
-				if currentRoom.directions.include? cd2
-					puts 'You can go that way.' #temp
-				else
-					puts NoGoResponce
-				end
-			else
-				puts NilGoResponce
-			end
-		end
-		if cd1 == 'examine'
-			command.delete_if{|x| x == 'the'}
 
-			needPass = true
-			currentRoom.items.each do |item|
-				if item.name == cd2
-					puts item.description
-					needPass = false
-					break
-				end
-			end
-			if needPass
-				if cd2 == nil
-					puts 'Examine what?'
-				else
-					puts "There is no #{cd2}"
-					return
-				end
-			end
+		if Movearry.include? cd1 then
+			return {:todo=>"move", :word=>cd2}
+		end
+		if cd1 == 'examine' then
+			command.delete "the"
+
+			return {:todo=> "examine", :word=>cd2}
 		end
 	end
 end

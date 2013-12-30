@@ -2,15 +2,21 @@
 #item.rb
 
 class Item
-	attr_accessor :description
-	attr_accessor :actions
-	attr_accessor :name
-
-	private
+	attr :description
+	attr :actions
+	attr :name
+	
 	def initialize(hsh)
 		@description = hsh[:description]
 		@actions = hsh[:actions]
 		@name = hsh[:name]
 	end
-		
+	
+	def addAction(action)
+		if action.respond_to?("each") then
+			action.each {@actions.push(action)}
+		else
+			@actions = action
+		end
+	end
 end

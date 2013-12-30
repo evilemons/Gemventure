@@ -14,6 +14,7 @@ class Interaction
 		command = gets.chomp
 		Parser.new.parse(command, room)
 	end
+	
 	def colorize(text, color)
 		"\e[#{color_code}m#{text}\e[0m"
 	end

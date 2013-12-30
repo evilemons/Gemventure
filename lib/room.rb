@@ -4,8 +4,8 @@ require_relative "item.rb"
 
 class Room
 	attr_accessor :description
-	@directions
-	@items
+	attr :directions
+	attr :items
 
 	def initialize(hsh)
 		@description = hsh[:description]
@@ -16,12 +16,12 @@ class Room
 	end
 
 	def addItems(items)
-		if items.respond_to?("each")
+		if items.respond_to?("each") then
 			items.each do |item|
-				@items.push(item)
+				@items.push item
 			end
 		else
-			@items.push(items)
+			@items.push items
 		end
 	end
 
