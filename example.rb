@@ -1,19 +1,10 @@
 #!/usr/bin/env ruby -wKU
 require_relative "lib/gemventure.rb"
 
-shovel = Item.new :description=> 'It is a rusty shovel.', :name=> 'shovel'
-bar = Item.new :description=> 'Just a simple gray bar.', :name=> 'bar'
-
-possibleDirections = %w[north n]
-
-initialRoom = Room.new :description=> 'You are in a forest. You see a shovel sticking up out of the ground.
-There is a path to the north.', 
-						:directions=> possibleDirections, 
-						:items=> [shovel, bar]
+letter = Item.new :description=>'It seems it is a letter. There is an un-broken seal.', :actions=>%w[open], :name=>'letter'
+Inventory.addItemtou letter
+initialRoom = Room.new :description=>'You are in a emty room. There is nothing here except a letter at your feet.', :items=>[letter]
 
 loop do
-	inroomone = Interaction.new initialRoom
-	if inroomone == false
-		break
-	end
+	Interaction.new initialRoom
 end

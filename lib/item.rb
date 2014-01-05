@@ -2,7 +2,7 @@
 #item.rb
 
 class Item
-	attr :description
+	attr_accessor :description
 	attr :actions
 	attr :name
 	

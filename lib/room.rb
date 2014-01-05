@@ -15,10 +15,10 @@ class Room
 		puts @description
 	end
 
-	def addItems(items)
-		if items.respond_to?("each") then
-			items.each do |item|
-				@items.push item
+	def addItem(item)
+		if item.respond_to? "each" then
+			item.each do |x|
+				@items.push x
 			end
 		else
 			@items.push items
@@ -26,7 +26,13 @@ class Room
 	end
 
 	def removeItem(item)
-		@items.delete_if{|x| x == item}
+		if item.respond_to? "each" then
+			item.each do |x|
+				@item.delete x
+			end
+		else
+		@items.delete item
+		end
 	end
 
 	def addDirection(direction)

@@ -1,13 +1,9 @@
 General
 	item interaction
-
+		!analyse action
 	implement go/move
 
 	inventory
-
-Parser
-	make explicit definition of possable letter directions obsolete 
-		EX: ["north", "n"]t
 
 Colors
 	automatic coloring for keywords (items)
